@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>详情页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="navbar.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">AI Tools</a>
+          </div>
+          <!-- <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+              <li><a href="../navbar-static-top/">Static top</a></li>
+              <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+            </ul>
+          </div>
+        </div>/.container-fluid -->
+      </nav>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>疾病对码</h1>
+        <p>使用ICD10编码和疾病名称进行对码。</p>
+        <h2>对码规则</h2>
+        <ul>
+          <li>第一步，匹配ICD10编码，完全匹配，标记为sim=3;</li>
+          <li>第二步，对剩余的条目，按照疾病名称进行匹配，完全匹配的，标记为sim=2;</li>
+          <li>第三步，对剩余的条目，按照TF-IDF进行匹配，会给出其相似度（介于0-1），sim值越高，表示越匹配。</li>
+        </ul>
+        <h2>使用方法</h2>
+        <ol>
+          <li>点击待匹配文件，选择待匹配的文件(支持csv/xls/xlsx格式，待匹配ICD10的表头列名称设置为code_target，待匹配疾病表头列设置为name_target)；</li>
+          <li>点击基准文件，选择基准文件(支持csv/xls/xlsx格式，基准ICD10的表头列名称设置为code_base，基准疾病表头列设置为name_base)；</li>
+          <li>点击上传文件按钮，进行文件上传及对码，需要稍等片刻（4000条样本的对码时间在5s左右），完成后会有对话框提示结果；</li>
+          <li>点击下载文件按钮，下载对码结果</li>
+        </ol>
+        <h4>上传样本示例</h4>
+        <img src="imgs/code_base.png" height="200px">
+        <img src="imgs/code_target.png" height="200px">
+        <br>
+        <h4>匹配结果示例</h4>
+        <img src="imgs/code_result.png" height="250px">
+        <p>
+          <div class="form-group">
+            <label for="exampleInputFile">待匹配文件</label>
+            <input type="file" id="target_file">
+            <label for="exampleInputFile">基准文件</label>
+            <input type="file" id="base_file">
+          </div>
+          <a class="btn btn-lg btn-primary" href="components/#navbar" role="button" id='uploadbutton'>上传文件 &raquo;</a>
+          <a class="btn btn-lg btn-primary" href="components/#navbar" role="button" id='downloadbutton'>下载文件 &raquo;</a>
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript">
+      // alert('aaa')
+      // alert(window.atob(window.btoa('china is so nb')))  # base64
+      $(document).ready(function () {
+        $("#downloadbutton").attr("disabled","disabled")
+        $("#uploadbutton").click(function () {
+
+          // alert($('#base_file').val().split('.')[1]);
+          var form_data = new FormData();
+          form_data.append('base_file', $('#base_file')[0].files[0]); 
+          form_data.append('target_file', $('#target_file')[0].files[0]); 
+          form_data.append('base_file_type', $('#base_file').val().split('.')[1]); 
+          form_data.append('target_file_type', $('#target_file').val().split('.')[1]); 
+          
+          // alert(base_file)
+          $.ajax({
+            type: "POST",
+            url: "http://localhost:1414/bk/ai_tools/disease_pair_code/",
+            /**
+            *必须false才会自动加上正确的Content-Type
+            */
+            contentType: false,
+            /**
+            * 必须false才会避开jQuery对 formdata 的默认处理
+            * XMLHttpRequest会对 formdata 进行正确的处理
+            */
+            processData: false,
+            data: form_data,
+            dataType: 'json',
+            success: function(result){
+              $("#downloadbutton").attr('href', 'http://localhost:1414/bk/ai_tools/file_download/?name='+result['body']['result'])
+              $("#downloadbutton").removeAttr("disabled")
+              alert("对码完成！请点击下载文件按钮，下载匹配结果！");
+            },
+            error: function(result){
+              alert(JSON.stringify(result))
+              alert("Data fail ");
+            }
+          });
+          return false;
+        });
+        // $("#downloadbutton").click(function () {
+        //   var a = document.createElement('a');
+        //   var file_name = "xxxx";
+        //   url = 'http://127.0.0.1:11111/ai_tools/code_align1/'
+        //   a.href = url
+        //   a.download = file_name;
+        //   a.click();
+        //   return false;
+        // });
+      });
+      
+    </script>
+  </body>
+</html>
